@@ -1,0 +1,11 @@
+{
+  "vmDnsPrefix": {
+    "value": "tcokovan"
+  },
+  "adminUsername": {
+    "value": "azureuser"
+  },
+  "adminPassword": {
+    "value": "Password1234!"
+  }
+}
