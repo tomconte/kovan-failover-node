@@ -7,7 +7,8 @@ USER_SCRIPT='kovan-failover-user.sh'
 
 AZUREUSER=$1
 ARTIFACTS_URL=$2
-ACCOUNT_PHRASE="this is just a test"
+ACCOUNT_PHRASE=$3
+ACCOUNT_PASSWORD=$4
 
 HOMEDIR="/home/${AZUREUSER}"
 
@@ -24,6 +25,8 @@ npm install pm2 -g
 cd $(mktemp -d)
 
 json=$(curl --silent ${PARITY_URL})
+echo $json
+
 parity_file=$(echo ${json} | python -c 'import sys, json; print json.load(sys.stdin)[0]["files"][1]["name"]')
 parity_deb=$(echo ${json} | python -c 'import sys, json; print json.load(sys.stdin)[0]["files"][1]["downloadUrl"]')
 wget --no-verbose $parity_deb
@@ -35,4 +38,4 @@ cd ${HOMEDIR}
 wget --no-verbose "${ARTIFACTS_URL}scripts/${USER_SCRIPT}"
 chown ${AZUREUSER} ${USER_SCRIPT}
 chmod +x ${USER_SCRIPT}
-su -l ${AZUREUSER} -c "${HOMEDIR}/${USER_SCRIPT} ${ACCOUNT_PHRASE}"
+su -l ${AZUREUSER} -c "${HOMEDIR}/${USER_SCRIPT} \"${ACCOUNT_PHRASE}\" \"${ACCOUNT_PASSWORD}\""

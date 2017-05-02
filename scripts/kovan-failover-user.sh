@@ -3,11 +3,16 @@
 # Executed as Azure user.
 
 ACCOUNT_PHRASE=$1
-ACCOUNT_PASSWORD="verysecret"
+ACCOUNT_PASSWORD=$2
 
 # Run Parity
 
 parity daemon parity.pid --log-file parity.log --auto-update=all --force-sealing --chain kovan --jsonrpc-apis "web3,eth,net,personal,parity_set"
+
+# Wait a few seconds to let Parity start
+# TODO: find a better way
+
+sleep 5
 
 # Create account
 

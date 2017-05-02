@@ -33,6 +33,20 @@
         "description": "Size of VM"
       }
     },
+    "accountRecoveryPhrase": {
+      "type": "string",
+      "metadata": {
+        "description": "Recovery phrase used to create the account"
+      }
+
+    },
+    "accountPassword": {
+      "type": "string",
+      "metadata": {
+        "description": "Password for the account"
+      }
+
+    },
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
@@ -199,7 +213,7 @@
           ]
         },
         "protectedSettings": {
-          "commandToExecute": "[concat('/bin/bash kovan-failover.sh ', parameters('adminUserName'), ' ', parameters('_artifactsLocation'))]"
+          "commandToExecute": "[concat('/bin/bash kovan-failover.sh ', parameters('adminUserName'), ' ', parameters('_artifactsLocation'), ' \"', parameters('accountRecoveryPhrase'), '\" \"', parameters('accountPassword'), '\"')]"
         }
       }
     }
