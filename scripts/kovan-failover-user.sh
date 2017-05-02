@@ -7,7 +7,7 @@ ACCOUNT_PASSWORD="verysecret"
 
 # Run Parity
 
-parity daemon parity.pid --log-file parity.log --auto-update=all --force-sealing --chain kovan
+parity daemon parity.pid --log-file parity.log --auto-update=all --force-sealing --chain kovan --jsonrpc-apis "web3,eth,net,personal,parity_set"
 
 # Create account
 
